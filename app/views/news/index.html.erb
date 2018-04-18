@@ -25,5 +25,6 @@
 </table>
 
 <br>
-
-<%= link_to 'New News', new_news_path %>
+<% if @has_more %>
+  <%= link_to 'More', news_index_path(p: @page + 1) %>
+<% end %>

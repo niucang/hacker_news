@@ -1,10 +1,14 @@
 class NewsController < ApplicationController
   before_action :set_news, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authencation, only: [:index]
+  PAGE_NUMBER = 1
 
   # GET /news
   # GET /news.json
   def index
-    @news = New.all
+    @page = (params[:p] || 1).to_i
+    @news = New.all.offset((@page - 1) * PAGE_NUMBER).limit(PAGE_NUMBER).order(created_at: :desc)
+    @has_more = (New.all.size - PAGE_NUMBER * @page) > 0
   end
 
   # GET /news/1
@@ -14,7 +18,7 @@ class NewsController < ApplicationController
 
   # GET /news/new
   def new
-    @news = New.new
+    @news = current_user.new.new
   end
 
   # GET /news/1/edit
@@ -24,7 +28,7 @@ class NewsController < ApplicationController
   # POST /news
   # POST /news.json
   def create
-    @news = New.new(news_params)
+    @news = current_user.new.new(news_params)
 
     respond_to do |format|
       if @news.save
@@ -69,6 +73,6 @@ class NewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def news_params
-      params.require(:news).permit(:title, :source)
+      params.require(:new).permit(:title, :source)
     end
 end

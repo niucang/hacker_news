@@ -1,10 +1,26 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authencation, only: [:index, :login]
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @user = User.new
+  end
+
+  def login
+    user = User.find_by(username: user_params[:username])&.authenticate(user_params[:password])
+    if user
+      login_user user
+      redirect_to user_path(user.id), notice: 'Log in success!'
+    else
+      redirect_to users_path, notice: 'User name or password is incorrect'
+    end
+  end
+
+  def logout
+    logout_user
+    redirect_to news_index_url
   end
 
   # GET /users/1
