@@ -1,13 +1,14 @@
 class NewsController < ApplicationController
   before_action :set_news, only: [:show, :edit, :update, :destroy]
   skip_before_action :authencation, only: [:index]
-  PAGE_NUMBER = 1
+  PAGE_NUMBER = 8
 
   # GET /news
   # GET /news.json
   def index
     @page = (params[:p] || 1).to_i
-    @news = New.all.offset((@page - 1) * PAGE_NUMBER).limit(PAGE_NUMBER).order(created_at: :desc)
+    @start = (@page - 1) * PAGE_NUMBER
+    @news = New.all.offset(@start).limit(PAGE_NUMBER).order(created_at: :desc)
     @has_more = (New.all.size - PAGE_NUMBER * @page) > 0
   end
 
