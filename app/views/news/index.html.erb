@@ -11,6 +11,7 @@
     <div class="ml-1">
       <%= "by #{new.user.username} #{time_ago_in_words(new.created_at)} ago | #{new.comments.size} comments" %>      
     </div>
+    <%= render 'comments/form', comment: new.comments.new %>
   <% end %>
 </tbody>
 
