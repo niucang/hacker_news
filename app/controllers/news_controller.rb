@@ -6,10 +6,10 @@ class NewsController < ApplicationController
   # GET /news
   # GET /news.json
   def index
-    @page = (params[:p] || 1).to_i
-    @start = (@page - 1) * PAGE_NUMBER
+    @page = (params[:p] || 0).to_i
+    @start = @page * PAGE_NUMBER
     @news = New.all.offset(@start).limit(PAGE_NUMBER).order(created_at: :desc)
-    @has_more = (New.all.size - PAGE_NUMBER * @page) > 0
+    @has_more = (New.all.size - PAGE_NUMBER * (@page + 1)) > 0
   end
 
   # GET /news/1

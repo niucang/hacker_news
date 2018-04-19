@@ -3,18 +3,16 @@
 
 <h1>News</h1>
 
-<div class="media">
+<div class="media news-index">
   <% @news.each_with_index do |new, index| %>
     <div class="media-body">
-      <h4 class="media-heading"><%= "#{@start + index + 1}. #{new.title} (#{new.source}) " %></h4>
+      <h4 class="media-heading"><%= "#{@start + index + 1}. #{new.title} #{new.source.present? ? "(#{link_to new.source, new.source})" : '' }".html_safe %></h4>
     </div>
     <div class="ml-1">
-      <%= "by #{new.user.username} #{time_ago_in_words(new.created_at)} ago | #{new.comments.size} comments" %>      
+      <%= "by #{new.user.username} #{time_ago_in_words(new.created_at)} ago | #{link_to "#{new.comments.size} comments", comments_path(id: new.id)}".html_safe %>
     </div>
-    <%= render 'comments/form', comment: new.comments.new %>
   <% end %>
-</tbody>
-
+</div>
 <br>
 <% if @has_more %>
   <%= link_to 'More', news_index_path(p: @page + 1) %>

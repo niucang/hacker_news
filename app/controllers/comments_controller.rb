@@ -4,7 +4,12 @@ class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.json
   def index
-    @comments = Comment.all
+    @new = New.find(params[:id])
+    @comments = @new.comments.order(created_at: :desc)
+  end
+
+  def newcomments
+    @comments = Comment.all.limit(3).order(created_at: :desc).includes(:user, :new)
   end
 
   # GET /comments/1
@@ -28,7 +33,7 @@ class CommentsController < ApplicationController
 
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to @comment, notice: 'Comment was successfully created.' }
+        format.html { redirect_back fallback_location: root_path, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }

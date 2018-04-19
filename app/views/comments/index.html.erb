@@ -1,27 +1,26 @@
+<% content_for :title, @new.title %>
+
 <p id="notice"><%= notice %></p>
 
-<h1>Comments</h1>
+<div class="media comment-index">
+  <div class="media-body">
+    <h4 class="media-heading"><%= "#{@new.title} (#{@new.source}) " %></h4>
+  </div>
+  <div class="ml-1">
+    <%= "by #{@new.user.username} #{time_ago_in_words(@new.created_at)} ago | #{@new.comments.size} comments" %>
+  </div>
+</div>
+<%= render 'comments/form', comment: @new.comments.new %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @comments.each do |comment| %>
-      <tr>
-        <td><%= comment.content %></td>
-        <td><%= link_to 'Show', comment %></td>
-        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="media">
+  <% @comments.each do |comment| %>
+    <div class="">
+      <%= "by #{comment.user.username} #{time_ago_in_words(comment.created_at)} ago" %>
+    </div>
+    <div class="media-body ml-1">
+      <h4 class="media-heading"><%= comment.content %></h4>
+    </div>
+  <% end %>
+</div>
 
 <br>
-
-<%= link_to 'New Comment', new_comment_path %>
