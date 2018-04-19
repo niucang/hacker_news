@@ -35,6 +35,8 @@
               <%= link_to 'Log out', logout_users_path, class: 'navbar-link' %>
             <% else %>
               <%= link_to 'Log in', users_path, class: 'navbar-link' %>
+              or
+              <%= link_to 'Sign up', new_user_path, class: 'navbar-link' %>              
             <% end %>
           </p>
         </div><!-- /.navbar-collapse -->
