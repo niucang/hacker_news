@@ -12,10 +12,13 @@
 
 ActiveRecord::Schema.define(version: 20180417163843) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "comments", force: :cascade do |t|
     t.text "content"
-    t.integer "user_id"
-    t.integer "new_id"
+    t.bigint "user_id"
+    t.bigint "new_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["new_id"], name: "index_comments_on_new_id"
@@ -25,7 +28,7 @@ ActiveRecord::Schema.define(version: 20180417163843) do
   create_table "news", force: :cascade do |t|
     t.text "title"
     t.string "source"
-    t.integer "user_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_news_on_user_id"
