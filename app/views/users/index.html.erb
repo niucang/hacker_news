@@ -18,3 +18,12 @@
     <%= form.submit "Log in" %>
   </div>
 <% end %>
+
+<h1>Sign up</h1>
+
+<%= render 'form', user: @user, botton_text: 'Sign up' %>
+<style>
+  body {
+    text-align: center;
+  }
+</style>
