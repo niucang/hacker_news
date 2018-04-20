@@ -2,4 +2,12 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $(document).on 'turbolinks:load', ->
-  console.log('say hi')
+
+  url_field = $("input[type='url']")
+  if url_field.length > 0
+    url_field.focusin ->
+      unless url_field.val()
+        url_field.val('https://')
+    .focusout ->
+      if url_field.val() == 'https://'
+        url_field.val('')
