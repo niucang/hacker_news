@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root :to => 'users#index'
+  root :to => 'news#index'
   resources :comments do
     collection do
       get :newcomments
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       get :about
     end
   end
+  get 'login', to: 'users#index'
   resources :news
 
   namespace :v0 do

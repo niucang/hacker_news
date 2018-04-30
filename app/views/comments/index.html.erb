@@ -7,7 +7,8 @@
     <h4 class="media-heading"><%= "#{@new.title} (#{@new.source}) " %></h4>
   </div>
   <div class="ml-1">
-    <%= "by #{@new.user.username} #{time_ago_in_words(@new.created_at)} ago | #{@new.comments.size} comments" %>
+    <% comment_size = @new.comments.size %>
+    <%= "by #{@new.user.username} #{time_ago_in_words(@new.created_at)} ago | #{comment_size > 0 ? comment_size.to_s + ' comments' : 'no comments'}" %>
   </div>
 </div>
 <%= render 'comments/form', comment: @new.comments.new %>
