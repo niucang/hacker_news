@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
+  get 'rooms/show'
+
   root :to => 'news#index'
   resources :comments do
     collection do
