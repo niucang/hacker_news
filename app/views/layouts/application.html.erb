@@ -14,54 +14,33 @@
   </head>
 
   <body>
-    <header class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-6" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="https://news.ycombinator.com/">
-            <%= image_tag "hacker_icon.png", size: '30x30', style: 'display: inline;' %>
-            RMIT News
-          </a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
-          <ul class="nav navbar-nav">
-            <li class="<%= current_page?(news_index_path) ? 'active' : '' %>"><%= link_to 'Home' , news_index_path %></li>
-            <li class="<%= current_page?(newcomments_comments_path) ? 'active' : '' %>"><%= link_to 'comments' , newcomments_comments_path %></li>
-            <li class="<%= current_page?(new_news_path) ? 'active' : '' %>"><%= link_to 'submit' , new_news_path %></li>
-          </ul>
-          <p class="navbar-text navbar-right">
-            <% if current_user %>
-              <%= link_to current_user.username, user_path(current_user.id), class: 'navbar-link' %>
-              ,
-              <%= link_to 'Log out', logout_users_path, class: 'navbar-link' %>
-            <% else %>
-              <%= link_to 'Log in', users_path, class: 'navbar-link' %>
-            <% end %>
-          </p>
-        </div><!-- /.navbar-collapse -->
+    <div class="ui fixed stackable menu">
+      <a class="header item" href="https://news.ycombinator.com/">
+        <%= image_tag "hacker_icon.png", size: '30x30', class: 'logo' %>
+        RMIT News
+      </a>
+      <%= link_to 'Home', news_index_path, class: "item #{current_page?(news_index_path) ? 'active' : ''}" %>
+      <%= link_to 'comments' , newcomments_comments_path, class: "item #{current_page?(newcomments_comments_path) ? 'active' : ''}" %>
+      <%= link_to 'submit' , new_news_path, class: "item #{current_page?(new_news_path) ? 'active' : ''}" %>
+      <div class="right menu">
+        <% if current_user %>
+          <%= link_to current_user.username, user_path(current_user.id), class: 'ui item' %>
+          <%= link_to 'Log out', logout_users_path, class: 'ui item' %>
+        <% else %>
+          <%= link_to 'Log in', users_path, class: 'ui item' %>
+        <% end %>
       </div>
-    </header>
-    <div class="container">
+    </div>
+    <div class="ui main text container">
       <%= yield %>
     </div>
 
-<!--Footer-->
-<footer class="page-footer navbar-fixed-bottom", style="height: 33px;">
-    <!--Copyright-->
-    <div class="footer-copyright py-3 text-center">
-        <a href="https://github.com/pigfly/RMIT-CSIT-RAD/tree/master/2018_S1/assignment2"> API </a>
-        |
-        <a href="users/about"> About </a>
-    </div>
-    <!--/.Copyright-->
-
-</footer>
-<!--/.Footer-->
+    <footer class="page-footer navbar-fixed-bottom", style="height: 33px;">
+      <div class="footer-copyright py-3 text-center">
+          <a href="https://github.com/pigfly/RMIT-CSIT-RAD/tree/master/2018_S1/assignment2"> API </a>
+          |
+          <a href="users/about"> About </a>
+      </div>
+    </footer>
   </body>
 </html>

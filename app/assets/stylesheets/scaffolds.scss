@@ -1,9 +1,6 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
 body {
   background-color: #fff;
   color: #333;
-  margin: 33px;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
   line-height: 18px;
@@ -86,7 +83,7 @@ label {
 }
 
 body > .container {
-  padding-top: 40px;
+  margin-top: 7em;
 }
 
 .ml-1 {

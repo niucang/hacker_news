@@ -1,29 +1,39 @@
-<p id="notice"><%= notice %></p>
+<div class="ui middle aligned center grid">
+  <div class="column">
+    <p id="notice"><%= notice %></p>
 
-<h1>Login</h1>
+    <h1>Login</h1>
 
-<%= form_for @user, url: login_users_path do |form| %>
+    <%= form_for @user, url: login_users_path, html: {class: 'ui large form'} do |form| %>
 
-  <div class="field">
-    <%= form.label :username %>
-    <%= form.text_field :username, id: :user_username %>
+      <div class="field">
+        <div class="ui left icon input">
+          <i class="user icon"></i>
+          <%= form.text_field :username, id: :user_username, placeholder: 'user name' %>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="ui left icon input">
+          <i class="lock icon"></i>
+          <%= form.password_field :password, id: :user_password, placeholder: 'password' %>
+        </div>
+      </div>
+
+      <%= form.submit "Log in", class: 'ui fluid large teal submit button' %>
+    <% end %>
+
+    <h1>Go</h1>
+
+    <%= render 'form', user: @user, botton_text: 'create' %>
+    <style>
+      body {
+        text-align: center;
+      }
+      .column {
+          max-width: 50%;
+          margin-left: 24%;
+      }
+    </style>
   </div>
-
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password, id: :user_password %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit "Log in" %>
-  </div>
-<% end %>
-
-<h1>creat account</h1>
-
-<%= render 'form', user: @user, botton_text: 'create' %>
-<style>
-  body {
-    text-align: center;
-  }
-</style>
+</div>
