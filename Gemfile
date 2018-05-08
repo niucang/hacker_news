@@ -12,8 +12,8 @@ gem 'rails', '~> 5.1.4'
 gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
-# Bootstrap for Sass
-gem 'bootstrap-sass', '~> 3.3.7'
+# Semantic UI for Sass
+gem 'semantic-ui-sass'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'jquery-rails'
