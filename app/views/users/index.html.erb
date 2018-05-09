@@ -2,7 +2,7 @@
   <div class="column">
     <p id="notice"><%= notice %></p>
 
-    <h1>Login</h1>
+    <h3>Login</h3>
 
     <%= form_for @user, url: login_users_path, html: {class: 'ui large form'} do |form| %>
 
@@ -23,7 +23,7 @@
       <%= form.submit "Log in", class: 'ui fluid large teal submit button' %>
     <% end %>
 
-    <h1>Go</h1>
+    <h3>Create User</h3>
 
     <%= render 'form', user: @user, botton_text: 'create' %>
     <style>

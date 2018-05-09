@@ -1,11 +1,18 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
 body {
   background-color: #fff;
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
+  font-size: 18px;
   line-height: 18px;
 }
-
+.ui.menu {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 2.5rem;
+}
 p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
@@ -19,15 +26,14 @@ pre {
 }
 
 a {
-  color: #000;
+  color: #666;
 
   &:visited {
-    color: #666;
+    color: #999;
   }
 
   &:hover {
-    color: #fff;
-    background-color: #000;
+    color: #00B5AD;
   }
 }
 
@@ -84,6 +90,9 @@ label {
 
 body > .container {
   margin-top: 7em;
+  @media screen and (max-width: 769px) {
+    margin-top: 19em;
+  }
 }
 
 .ml-1 {
