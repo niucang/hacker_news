@@ -1,15 +1,5 @@
 <%= form_with(model: news, local: true, url: news_index_path, html: {class: 'form-group'}) do |form| %>
-  <% if news.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(news.errors.count, "error") %> prohibited this news from being saved:</h2>
-
-      <ul>
-      <% news.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'layouts/alert', object: news %>
 
   <div class="field">
     <%= form.label :title, 'title: ' %>

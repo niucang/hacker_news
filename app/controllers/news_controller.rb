@@ -22,10 +22,6 @@ class NewsController < ApplicationController
     @news = current_user.new.new
   end
 
-  # GET /news/1/edit
-  def edit
-  end
-
   # POST /news
   # POST /news.json
   def create
@@ -37,20 +33,6 @@ class NewsController < ApplicationController
         format.json { render :show, status: :created, location: @news }
       else
         format.html { render :new }
-        format.json { render json: @news.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /news/1
-  # PATCH/PUT /news/1.json
-  def update
-    respond_to do |format|
-      if @news.update(news_params)
-        format.html { redirect_to @news, notice: 'New was successfully updated.' }
-        format.json { render :show, status: :ok, location: @news }
-      else
-        format.html { render :edit }
         format.json { render json: @news.errors, status: :unprocessable_entity }
       end
     end

@@ -17,15 +17,6 @@ class CommentsController < ApplicationController
   def show
   end
 
-  # GET /comments/new
-  def new
-    @comment = Comment.new
-  end
-
-  # GET /comments/1/edit
-  def edit
-  end
-
   # POST /comments
   # POST /comments.json
   def create
@@ -37,20 +28,6 @@ class CommentsController < ApplicationController
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { redirect_back fallback_location: root_path, notice: @comment.errors.full_messages.join(',') }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /comments/1
-  # PATCH/PUT /comments/1.json
-  def update
-    respond_to do |format|
-      if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @comment }
-      else
-        format.html { render :edit }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
