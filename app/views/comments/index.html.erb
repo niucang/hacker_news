@@ -2,24 +2,20 @@
 
 <p id="notice"><%= notice %></p>
 
-<div class="media comment-index">
-  <div class="media-body">
-    <h4 class="media-heading"><%= "#{@new.title} (#{@new.source}) " %></h4>
-  </div>
-  <div class="ml-1">
-    <% comment_size = @new.comments.size %>
-    <%= "by #{@new.user.username} #{time_ago_in_words(@new.created_at)} ago | #{comment_size > 0 ? comment_size.to_s + ' comments' : 'no comments'}" %>
-  </div>
+<div class="topics media comment-index">
+  <%= render "news/topic", new: @new%>
 </div>
 <%= render 'comments/form', comment: @new.comments.new %>
 
-<div class="media">
+<div class="media comments">
   <% @comments.each do |comment| %>
-    <div class="">
-      <%= "by #{comment.user.username} #{time_ago_in_words(comment.created_at)} ago" %>
-    </div>
-    <div class="media-body ml-1">
-      <h4 class="media-heading"><%= comment.content %></h4>
+    <div class="panel comment">
+      <div class="">
+        <%= "by #{comment.user.username} #{time_ago_in_words(comment.created_at)} ago" %>
+      </div>
+      <div class="media-body ml-1">
+        <h4 class="media-heading"><%= comment.content %></h4>
+      </div>
     </div>
   <% end %>
 </div>

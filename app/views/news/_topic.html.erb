@@ -1,0 +1,13 @@
+<div class="panel topic">
+  <div class="media-body">
+    <% prefix = @start ? "#{@start + index + 1}. " : ''%>
+    <h4 class="media-heading"><%= "#{prefix}#{new.title} #{new.source.present? ? "(#{link_to new.source, new.source})" : '' }".html_safe %></h4>
+  </div>
+  <div class="ml-1">
+    <span>by</span>
+    <span class="strong"><%= new.user.username %></span>
+    <span><%= "#{time_ago_in_words(new.created_at)} ago" %></span>
+    <% comment_size = new.comments.size %>
+    <span class="comment pull-right"><%= link_to "#{comment_size > 0 ? new.comments.size.to_s + ' comments' : 'no comments'}", comments_path(id: new.id) %></span>
+  </div>
+</div>

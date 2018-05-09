@@ -1,17 +1,9 @@
 <%= content_for :title, "Home Page #{@page}" %>
 <p id="notice"><%= notice %></p>
 
-<h1>News</h1>
-
-<div class="media news-index">
+<div class="topics media news-index">
   <% @news.each_with_index do |new, index| %>
-    <div class="media-body">
-      <h4 class="media-heading"><%= "#{@start + index + 1}. #{new.title} #{new.source.present? ? "(#{link_to new.source, new.source})" : '' }".html_safe %></h4>
-    </div>
-    <div class="ml-1">
-      <% comment_size = new.comments.size %>
-      <%= "by #{new.user.username} #{time_ago_in_words(new.created_at)} ago | #{link_to "#{comment_size > 0 ? new.comments.size.to_s + ' comments' : 'no comments'}", comments_path(id: new.id)}".html_safe %>
-    </div>
+    <%= render "topic", index: index, new: new%>
   <% end %>
 </div>
 <br>
