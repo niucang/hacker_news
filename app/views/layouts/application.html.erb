@@ -16,7 +16,7 @@
   <body>
     <div class="ui fixed stackable menu">
       <a class="header item" href="https://news.ycombinator.com/">
-        <%= image_tag "icon.png", size: '30x30', class: 'logo' %>
+        <%= image_tag "icon.png", class: 'logo' %>
         RMIT News
       </a>
       <%= link_to 'Home', news_index_path, class: "item #{current_page?(news_index_path) ? 'active' : ''}" %>
