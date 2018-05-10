@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   def authencation
     if current_user.blank?
-      redirect_to login_path, notice: "Please Login first ^-^"
+      redirect_to login_path, notice: "Login first!"
     end
   end
 

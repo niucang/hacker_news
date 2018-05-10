@@ -1,6 +1,8 @@
 <div class="ui middle aligned center grid">
   <div class="column">
-    <p id="notice"><%= notice %></p>
+    <% if notice %>
+      <div class="alert alert-success"><%= notice %></div>
+    <% end %>
 
     <h3>Login</h3>
 

@@ -1,13 +1,15 @@
-<div class="alert alert-success" role="alert"><%= notice %></div>
-<p>
-  <strong>Username:</strong>
+<% if notice %>
+  <div class="alert alert-success" role="alert"><%= notice %></div>
+<% end %>
+<p class="grid-user">
+  <span class="label label-info"><strong>Username:</strong></span>
   <%= @user.username %>
 </p>
 
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
+<p class="grid-user">
+  <span class="label label-info"><strong>Password:</strong></span>
+  <%= '*' * 8 %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', news_index_path %>
+<%= link_to 'Edit User', edit_user_path(@user), class: 'btn btn-success' %>
+<%= link_to 'Home', news_index_path, class: 'btn btn-primary' %>

@@ -40,8 +40,18 @@ body {
         }
       }
     }
+    .topic:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: 0;
+    }
     & > * {
       margin: 1em 0.5em;
+    }
+    .grid-user {
+      padding: 1em 0.5em;
+      border: 1px solid #d0e2f8;
+      border-radius: 2px;
     }
   }
 }
@@ -65,10 +75,6 @@ pre {
 
 a {
   color: #666;
-
-  &:visited {
-    color: #999;
-  }
 
   &:hover {
     color: #00B5AD;

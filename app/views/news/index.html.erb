@@ -1,12 +1,15 @@
 <%= content_for :title, "Home Page #{@page}" %>
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <div class="alert alert-success"><%= notice %></div>
+<% end %>
 
 <div class="topics media news-index">
   <% @news.each_with_index do |new, index| %>
     <%= render "topic", index: index, new: new%>
   <% end %>
 </div>
-<br>
 <% if @has_more %>
-  <%= link_to 'More', news_index_path(p: @page + 1) %>
+  <div class="">
+    <%= link_to 'More', news_index_path(p: @page + 1), class: 'btn btn-default' %>
+  </div>
 <% end %>
