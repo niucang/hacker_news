@@ -1,15 +1,14 @@
 class NewsController < ApplicationController
   before_action :set_news, only: [:show, :edit, :update, :destroy]
   skip_before_action :authencation, only: [:index]
-  PAGE_NUMBER = 8
 
   # GET /news
   # GET /news.json
   def index
     @page = (params[:p] || 0).to_i
-    @start = @page * PAGE_NUMBER
-    @news = New.all.offset(@start).limit(PAGE_NUMBER).order(created_at: :desc)
-    @has_more = (New.all.size - PAGE_NUMBER * (@page + 1)) > 0
+    @start = @page * 8
+    @news = New.all.offset(@start).limit(8).order(created_at: :desc)
+    @has_more = (New.all.size - 8 * (@page + 1)) > 0
   end
 
   # GET /news/1
@@ -49,13 +48,13 @@ class NewsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_news
-      @news = New.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_news
+    @news = New.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def news_params
-      params.require(:new).permit(:title, :source)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def news_params
+    params.require(:new).permit(:title, :source)
+  end
 end

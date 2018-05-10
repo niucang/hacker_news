@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       login_user user
       redirect_to user_path(user.id), notice: 'Log in success!'
     else
-      redirect_to users_path, notice: 'User name or password is incorrect'
+      redirect_to users_path, notice: 'Something Wrong'
     end
   end
 

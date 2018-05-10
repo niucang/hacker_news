@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
   end
 
   def newcomments
-    @comments = Comment.all.limit(3).order(created_at: :desc).includes(:user, :new)
+    @comments = Comment.all.limit(3).order(created_at: :desc)
   end
 
   # GET /comments/1
